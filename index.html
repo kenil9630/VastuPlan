@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VastuAlign | Professional Floor Plan Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="brand">
+            <h1>VastuAlign</h1>
+            <p class="description">High-precision interactive Vastu analysis. Orient your space with 31° NE precision.
+            </p>
+        </div>
+
+        <div class="status-container">
+            <label>Current Status</label>
+            <div id="step-1" class="status-step active">
+                <div class="indicator"></div>
+                <span>Upload Floor Plan</span>
+            </div>
+            <div id="step-2" class="status-step">
+                <div class="indicator"></div>
+                <span>Define Brahmasthan</span>
+            </div>
+            <div id="step-3" class="status-step">
+                <div class="indicator"></div>
+                <span>Custom Calibration</span>
+            </div>
+        </div>
+
+        <section class="controls-group">
+            <div class="control-section">
+                <label>Calibration Settings</label>
+                <div class="calibration-settings">
+                    <div class="input-group">
+                        <label title="Orientation degree relative to North">Ref Degree:</label>
+                        <input type="number" id="calib-degree" value="31" step="1" min="0" max="360">
+                    </div>
+                    <div class="toggle-group">
+                        <button id="toggle-cw" class="toggle-btn active" onclick="setDirection('CW')">Clockwise</button>
+                        <button id="toggle-acw" class="toggle-btn" onclick="setDirection('ACW')">Anti-CW</button>
+                    </div>
+                    <div class="input-group"
+                        style="border-top: 1px solid var(--glass-border); padding-top: 0.75rem; margin-top: 0.25rem;">
+                        <label title="Angular grid interval in degrees">Grid Every:</label>
+                        <input type="number" id="grid-interval" value="2" step="1" min="1" max="90">
+                        <span>°</span>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="snap-toggle" checked>
+                        <label for="snap-toggle">Snap to Grid</label>
+                    </div>
+                </div>
+            </div>
+            <div class="control-section">
+                <label>Workflow</label>
+                <button class="btn" onclick="document.getElementById('file-input').click()">
+                    <i class="fas fa-plus-circle"></i> New Floor Plan
+                </button>
+                <input type="file" id="file-input" accept="image/*">
+            </div>
+
+            <div class="control-section">
+                <label>Actions</label>
+                <button class="btn btn-secondary" onclick="resetPoints()">
+                    <i class="fas fa-rotate-right"></i> Reset Markers
+                </button>
+                <button class="btn btn-secondary" onclick="downloadResult()">
+                    <i class="fas fa-cloud-arrow-down"></i> Export Result
+                </button>
+            </div>
+        </section>
+
+        <footer style="margin-top: auto;">
+            <p class="description" style="font-size: 0.75rem; opacity: 0.6; text-align: center;">
+                Professional Suite v1.2
+            </p>
+        </footer>
+    </aside>
+
+    <main class="main-content">
+        <div id="canvas-container">
+            <canvas id="main-canvas"></canvas>
+
+            <div id="hint-bar" class="canvas-hint">
+                <i class="fas fa-info-circle"></i>
+                <span id="hint-text">Please upload a floor plan image to begin.</span>
+            </div>
+
+            <div id="tooltip" class="tooltip" style="display: none;"></div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
