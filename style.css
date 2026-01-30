@@ -249,6 +249,42 @@ canvas {
     color: white;
 }
 
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.btn-danger:hover {
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+/* Floating Actions */
+.floating-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.floating-btn:hover {
+    transform: rotate(-45deg) scale(1.1);
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
 #file-input {
     display: none;
 }

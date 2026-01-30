@@ -6,6 +6,7 @@ const hintText = document.getElementById('hint-text');
 const calibDegreeInput = document.getElementById('calib-degree');
 const gridIntervalInput = document.getElementById('grid-interval');
 const snapToggle = document.getElementById('snap-toggle');
+const floatingReset = document.getElementById('floating-reset');
 
 let img = new Image();
 let centerPoint = null;
@@ -80,6 +81,9 @@ function updateHint() {
         hintText.innerText = "Analysis complete. Use calibration settings to fine-tune.";
         updateUI(3);
     }
+
+    // Toggle floating reset button
+    floatingReset.style.display = (centerPoint || refPoint) ? 'flex' : 'none';
 }
 
 function resizeCanvas() {
@@ -153,6 +157,27 @@ function resetPoints() {
     refPoint = null;
     updateHint();
     draw();
+}
+
+function resetSettings() {
+    calibDegreeInput.value = 31;
+    gridIntervalInput.value = 2;
+    snapToggle.checked = true;
+    setDirection('CW');
+    updateHint();
+    draw();
+}
+
+function fullReset() {
+    if (confirm("This will clear all markers and the uploaded image. Proceed?")) {
+        img = new Image();
+        isImageLoaded = false;
+        centerPoint = null;
+        refPoint = null;
+        resetSettings();
+        updateHint();
+        draw();
+    }
 }
 
 function draw() {

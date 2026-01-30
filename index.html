@@ -61,18 +61,23 @@
                 </div>
             </div>
             <div class="control-section">
-                <label>Workflow</label>
-                <button class="btn" onclick="document.getElementById('file-input').click()">
-                    <i class="fas fa-plus-circle"></i> New Floor Plan
-                </button>
-                <input type="file" id="file-input" accept="image/*">
+                <label>System Controls</label>
+                <div style="display: flex; gap: 0.5rem; flex-direction: column;">
+                    <button class="btn btn-secondary" onclick="resetPoints()"
+                        title="Clear markers but keep calibration">
+                        <i class="fas fa-eraser"></i> Clear Markers
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetSettings()" title="Revert to 31 deg CW defaults">
+                        <i class="fas fa-sliders"></i> Reset Settings
+                    </button>
+                    <button class="btn btn-danger" onclick="fullReset()" title="Wipe everything and start fresh">
+                        <i class="fas fa-trash-alt"></i> Full Reset
+                    </button>
+                </div>
             </div>
 
             <div class="control-section">
-                <label>Actions</label>
-                <button class="btn btn-secondary" onclick="resetPoints()">
-                    <i class="fas fa-rotate-right"></i> Reset Markers
-                </button>
+                <label>Export</label>
                 <button class="btn btn-secondary" onclick="downloadResult()">
                     <i class="fas fa-cloud-arrow-down"></i> Export Result
                 </button>
@@ -89,6 +94,11 @@
     <main class="main-content">
         <div id="canvas-container">
             <canvas id="main-canvas"></canvas>
+
+            <button id="floating-reset" class="floating-btn" onclick="resetPoints()" style="display: none;"
+                title="Reset Markers">
+                <i class="fas fa-undo"></i>
+            </button>
 
             <div id="hint-bar" class="canvas-hint">
                 <i class="fas fa-info-circle"></i>
